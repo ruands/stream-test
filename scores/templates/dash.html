@@ -1,0 +1,19 @@
+{% if heading %}
+    <h1>{{ heading }} Results</h1>
+    <a href="{% url 'home' %}">Home</a>
+
+    <ul>
+        {% if students %}
+            {% for student in students %}
+                <li>{{ student.first_name }} {{student.last_name }}</li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+{% else %}
+    <h1>View scores by:</h1>
+    <ul>
+        <li><a href="{% url 'student' %}">Student</a></li>
+        <li><a href="{% url 'subject' %}">Subject</a></li>
+        <li><a href="{% url 'test' %}">Test</a></li>
+    </ul>
+{% endif %}
