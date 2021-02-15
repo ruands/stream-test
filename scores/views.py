@@ -30,6 +30,36 @@ class SubjectResultsListView(ListView):
         return context
 
 
+class SubjectResultsView(TemplateView):
+    template_name = "results.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        subject = Subject.objects.get(id=kwargs.get("pk"))
+        # subject_tests = Test.objects.filter()
+        scores = Score.objects.filter(subject=subject)
+        stats = []
+        total_score = 0
+        total_max = 0
+        for score in scores:
+            test = {
+                "title": score.test.title,
+                "subject": score.test.subject,
+                "score": score.score,
+                "max": score.test.max_score,
+                "avg": score.score / score.test.max_score * 100
+            }
+            stats.append(test)
+            total_score += score.score
+            total_max += score.test.max_score
+        context = {
+            "subject": subject,
+            "scores": stats,
+            "total_avg": total_score / total_max * 100
+        }
+        return context
+
+
 class StudentResultsListView(ListView):
     model = Student
     template_name = "dash.html"
@@ -49,17 +79,22 @@ class StudentResultsView(TemplateView):
         student = Student.objects.get(id=kwargs.get("pk"))
         scores = Score.objects.filter(student=student)
         stats = []
+        total_score = 0
+        total_max = 0
         for score in scores:
             test = {
                 "title": score.test.title,
                 "subject": score.test.subject,
                 "score": score.score,
                 "max": score.test.max_score,
-                "avg": score.score / score.test.max_score
+                "avg": score.score / score.test.max_score * 100
             }
-            stats.append(score)
+            stats.append(test)
+            total_score += score.score
+            total_max += score.test.max_score
         context = {
             "student": student,
-            "scores": stats
+            "scores": stats,
+            "total_avg": total_score / total_max * 100
         }
         return context

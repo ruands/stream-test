@@ -5,7 +5,7 @@
     <ul>
         {% if students %}
             {% for student in students %}
-                <li>{{ student.first_name }} {{student.last_name }}</li>
+                <li><a href="{% url 'student-result' pk=student.id %}">{{ student.first_name }} {{student.last_name }}</a></li>
             {% endfor %}
         {% elif subjects %}
             {% for subject in subjects %}

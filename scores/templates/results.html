@@ -1,6 +1,12 @@
-<h1>{{ student.first_name }} {{ student.last_name }}</h1>
+<h1>
+    {% if student %}
+        {{ student.first_name }} {{ student.last_name }}
+    {% elif subject %}
+        {{ subject }}
+    {% endif %}
+</h1>
 
-<table>
+<table border="1">
     <tr>
         <th>Title</th>
         <th>Subject</th>
@@ -10,11 +16,13 @@
     </tr>
     {% for score in scores %}
         <tr>
-            <td>{{ score.test.title }}</td>
-            <td>{{ score.test.subject }}</td>
+            <td>{{ score.title }}</td>
+            <td>{{ score.subject }}</td>
             <td>{{ score.score }}</td>
-            <td>{{ score.test.max_score }}</td>
-            <td>{{ score.avg|floatformat }}</td>
+            <td>{{ score.max }}</td>
+            <td>{{ score.avg|floatformat }}%</td>
         </tr>
     {% endfor %}
 </table>
+
+Total Avg: {{ total_avg|floatformat }}%
