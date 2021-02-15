@@ -20,6 +20,5 @@ from scores import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/scores/', views.CreateTestResultsView.as_view())
-
+    path('api/v1/scores/', views.TestScoreCreateView.as_view())
 ]

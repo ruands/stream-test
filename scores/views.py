@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework.generics import CreateAPIView
 
-# Create your views here.
+from scores.models import Score
+from scores.serializers import TestScoreSerializer
+
+
+class TestScoreCreateView(CreateAPIView):
+    queryset = Score.objects.all()
+    serializer_class = TestScoreSerializer
