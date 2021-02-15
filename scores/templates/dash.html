@@ -7,6 +7,14 @@
             {% for student in students %}
                 <li>{{ student.first_name }} {{student.last_name }}</li>
             {% endfor %}
+        {% elif subjects %}
+            {% for subject in subjects %}
+                <li>{{ subject.name }} - {{subject.code }}</li>
+            {% endfor %}
+        {% elif tests %}
+            {% for test in tests %}
+                <li>{{ test.title }} - {{ test.subject.code }}</li>
+            {% endfor %}
         {% endif %}
     </ul>
 {% else %}

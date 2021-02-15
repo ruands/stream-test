@@ -1,0 +1,20 @@
+<h1>{{ student.first_name }} {{ student.last_name }}</h1>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Subject</th>
+        <th>Score</th>
+        <th>Max</th>
+        <th>Avg</th>
+    </tr>
+    {% for score in scores %}
+        <tr>
+            <td>{{ score.test.title }}</td>
+            <td>{{ score.test.subject }}</td>
+            <td>{{ score.score }}</td>
+            <td>{{ score.test.max_score }}</td>
+            <td>{{ score.avg|floatformat }}</td>
+        </tr>
+    {% endfor %}
+</table>

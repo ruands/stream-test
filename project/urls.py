@@ -22,7 +22,8 @@ urlpatterns = [
     path('', views.DashView.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('api/v1/scores/', api.TestScoreCreateView.as_view()),
-    path('student/', views.StudentResultsView.as_view(), name="student"),
-    path('subject/', views.SubjectResultsView.as_view(), name="subject"),
-    path('test/', views.TestResultsView.as_view(), name="test")
+    path('student/', views.StudentResultsListView.as_view(), name="student"),
+    path('student/<int:pk>/', views.StudentResultsView.as_view(), name="student-result"),
+    path('subject/', views.SubjectResultsListView.as_view(), name="subject"),
+    path('test/', views.TestResultsListView.as_view(), name="test")
 ]
