@@ -16,9 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from scores import views
+from scores import api
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/scores/', views.TestScoreCreateView.as_view())
+    path('api/v1/scores/', api.TestScoreCreateView.as_view())
 ]

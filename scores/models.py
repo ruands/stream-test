@@ -35,8 +35,8 @@ class Test(models.Model):
 
 
 class Score(models.Model):
-    student_id = models.ForeignKey(Student, on_delete=models.PROTECT)
-    test_id = models.ForeignKey(Test, on_delete=models.PROTECT)
+    student = models.ForeignKey(Student, on_delete=models.PROTECT)
+    test = models.ForeignKey(Test, on_delete=models.PROTECT)
     score = models.IntegerField()
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
